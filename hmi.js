@@ -71,7 +71,7 @@ AFRAME.registerComponent('hmi-controller', {
     // Change button color and navigate to another HTML file on click
     button.addEventListener('click', () => {
       button.setAttribute('material', 'color', '#00ff00'); // Change color to green
-      window.location.href = 'https://captainxico.github.io/Explica-es7-Mat/'; // Replace 'presents.html' with the path to your target file
+      window.location.href = 'https://captainxico.github.io/zoo/presents.html'; // Replace 'presents.html' with the path to your target file
     });
 
     el.appendChild(this.hmi);
