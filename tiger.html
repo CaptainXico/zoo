@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive Animal Scene - A-Frame</title>
+    <meta name="description" content="tiger den" />
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@7.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+
+    <script src="genetree.js"></script>
+    <script src="generock.js"></script>
+    <script src="genebush.js"></script>
+    <script src="smooth-move.js"></script>
+    <script src="HMI.js"></script>
+  </head>
+  <body>
+    <a-scene fog="type: linear; color: #87CEEB; near: 1; far: 50">
+      <a-assets>
+        <a-asset-item
+          id="treemodel"
+          src="https://cdn.glitch.global/81f24a0b-c889-43ec-87ce-8b698f5614c1/white_birch.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="rockmodel"
+          src="https://cdn.glitch.global/bf633d24-b8b4-465a-ad81-21cc3733600c/rocks_desert_lowpoly.glb?v=1737661455849"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="bush"
+          src="https://cdn.glitch.global/81f24a0b-c889-43ec-87ce-8b698f5614c1/simple_tree.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="tigermodel"
+          src="https://cdn.glitch.global/bf633d24-b8b4-465a-ad81-21cc3733600c/tiger.glb?v=1737660757847"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-sky color="#ECECEC"></a-sky>
+
+      <!-- Joystick-controlled camera rig -->
+      <a-entity id="rig" gamepad-controls="fly: true">
+        <a-entity
+          id="camera"
+          camera
+          position="0 1.6 0"
+          look-controls
+        ></a-entity>
+      </a-entity>
+
+      <!-- Moving entity -->
+      <a-entity
+        id="tiger"
+        gltf-model="#tigermodel"
+        scale="2 2 2"
+        smooth-move
+      ></a-entity>
+
+      <!-- ground plane -->
+      <a-plane
+        position="0 -1 -10"
+        rotation="-90 0 0"
+        width="100"
+        height="100"
+        color="#9b7653"
+        material="opacity: 0.9; roughness: 1"
+      ></a-plane>
+
+      <!-- Controllers -->
+      <a-entity
+        id="left-controller"
+        laser-controls="hand: left"
+        hmi-controller="hand: left"
+        raycaster="objects: .interactive; far: 10"
+        line="color: #00ff00; opacity: 0.8; width: 0.02;"
+      ></a-entity>
+
+      <a-entity
+        id="right-controller"
+        laser-controls="hand: right"
+        raycaster="objects: .interactive; far: 10"
+        line="color: #00ff00; opacity: 0.8; width: 0.02;"
+      ></a-entity>
+
+      <!-- Camera rig -->
+      <a-entity id="camera-rig">
+        <a-camera position="0 1.6 0"></a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
