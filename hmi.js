@@ -68,11 +68,13 @@ AFRAME.registerComponent('hmi-controller', {
       this.hmi.setAttribute('visible', false);
     });
 
-    // Change button color on click
+    // Change button color and navigate to another HTML file on click
     button.addEventListener('click', () => {
       button.setAttribute('material', 'color', '#00ff00'); // Change color to green
+      window.location.href = 'presents.html'; // Replace 'presents.html' with the path to your target file
     });
 
     el.appendChild(this.hmi);
   },
 });
+
