@@ -49,7 +49,7 @@ AFRAME.registerComponent('hmi-controller', {
     button.setAttribute('position', '0 0 0.01'); // Centered on the HMI
     button.setAttribute('class', 'interactive'); // Add a class for raycasting
     button.setAttribute('text', {
-      value: 'Open Link',
+      value: 'NEXT',
       align: 'center',
       color: '#000000',
     });
@@ -65,7 +65,7 @@ AFRAME.registerComponent('hmi-controller', {
 
     // Redirect to the URL when the button is clicked
     button.addEventListener('triggerdown', () => {
-      window.location.href = 'https://lion-vr.glitch.me/'; // Replace with your desired URL
+      window.location.href = 'https://lion-vr.glitch.me'; // Replace with your desired URL
     });
 
     // Append the button to the HMI
