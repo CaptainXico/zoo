@@ -65,7 +65,7 @@ AFRAME.registerComponent('hmi-controller', {
 
     // Redirect to the URL when the button is clicked
     button.addEventListener('triggerdown', () => {
-      window.location.href = 'https://captainxico.github.io/zoo/lion.html'; // Replace with your desired URL
+      window.location.href = 'https://lion-vr.glitch.me/'; // Replace with your desired URL
     });
 
     // Append the button to the HMI
