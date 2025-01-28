@@ -16,8 +16,10 @@ window.addEventListener('load', () => {
   console.log("Movement script initialized successfully.");
 
   // Listen for thumbstick movement
-  leftController.addEventListener('thumbstickmoved', (event) => {
+  leftController.addEventListener('axismove', (event) => {
     const { x, y } = event.detail; // x = left/right, y = forward/backward
+
+    console.log("Thumbstick moved:", x, y);
 
     // Get the camera's rotation
     const cameraRotation = camera.object3D.rotation;
