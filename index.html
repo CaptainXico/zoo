@@ -70,7 +70,7 @@
 
       <!-- Camera rig with controllers as children -->
       <a-entity id="camera-rig">
-        <a-camera id="camera" position="0 1.6 0"></a-camera>
+        <a-camera id="cam" position="0 1.6 0"></a-camera>
         
         <!-- Left controller -->
         <a-entity
@@ -78,6 +78,7 @@
           laser-controls="hand: left"
           raycaster="objects: .interactive; far: 10"
           line="color: #00ff00; opacity: 0.8; width: 0.02;"
+          hmi-controller="hand: left"
         ></a-entity>
 
         <!-- Right controller -->
