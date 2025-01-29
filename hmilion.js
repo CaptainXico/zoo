@@ -1,16 +1,16 @@
 AFRAME.registerComponent('hmi-controller', {
   schema: {
-    hand: { type: 'string', default: 'left' },
+    hand: { type: 'string', default: 'left' }, // Specify which hand to attach the HMI
   },
   init: function () {
     const el = this.el;
 
-    // Create HMI base with rounded border
+    // Create HMI base
     this.hmi = document.createElement('a-entity');
     this.hmi.setAttribute('geometry', {
       primitive: 'plane',
       height: 0.5,
-      width: 0.5,
+      width: 0.7,
     });
     this.hmi.setAttribute('material', {
       color: '#ffffff',
@@ -20,12 +20,12 @@ AFRAME.registerComponent('hmi-controller', {
     this.hmi.setAttribute('rotation', '-45 0 0'); // Tilt towards the user
     this.hmi.setAttribute('visible', false); // Initially hidden
 
-    // Add a black border with rounded edges
+    // Add a black border
     const border = document.createElement('a-entity');
     border.setAttribute('geometry', {
       primitive: 'plane',
-      height: 0.55, // Slightly larger than HMI
-      width: 0.55,
+      height: 0.52, // Slightly larger than HMI
+      width: 0.72,
     });
     border.setAttribute('material', {
       color: '#000000',
@@ -33,8 +33,6 @@ AFRAME.registerComponent('hmi-controller', {
       opacity: 1,
     });
     border.setAttribute('position', '0 0 -0.01'); // Behind the HMI
-    border.setAttribute('rounded', { radius: 0.05 }); // Add rounded edges (via custom rounded shader/component)
-
     this.hmi.appendChild(border);
 
     // Create Button Entity
@@ -45,17 +43,32 @@ AFRAME.registerComponent('hmi-controller', {
       width: 0.3,
     });
     button.setAttribute('material', {
-      color: '#ff0000', // Red button initially
+      color: '#ff0000', // Red button
       opacity: 0.8,
     });
     button.setAttribute('position', '0 0 0.01'); // Centered on the HMI
     button.setAttribute('class', 'interactive'); // Add a class for raycasting
     button.setAttribute('text', {
-      value: 'Click Me',
+      value: 'Open Link',
       align: 'center',
       color: '#000000',
     });
 
+    // Handle raycaster interaction
+    button.addEventListener('raycaster-intersected', () => {
+      button.setAttribute('material', 'color', '#00ff00'); // Highlight when intersected
+    });
+
+    button.addEventListener('raycaster-intersected-cleared', () => {
+      button.setAttribute('material', 'color', '#ff0000'); // Reset when cleared
+    });
+
+    // Redirect to the URL when the button is clicked
+    button.addEventListener('triggerdown', () => {
+      window.location.href = 'https://captainxico.github.io/zoo/lion.html'; // Replace with your desired URL
+    });
+
+    // Append the button to the HMI
     this.hmi.appendChild(button);
 
     // Show HMI when left hand trigger is pressed
@@ -66,12 +79,6 @@ AFRAME.registerComponent('hmi-controller', {
     // Hide HMI when left hand trigger is released
     el.addEventListener('triggerup', () => {
       this.hmi.setAttribute('visible', false);
-    });
-
-    // Change button color and navigate to another HTML file on click
-    button.addEventListener('click', () => {
-      button.setAttribute('material', 'color', '#00ff00'); // Change color to green
-      window.location.href = 'https://captainxico.github.io/zoo/lion.html'; // Replace 'presents.html' with the path to your target file
     });
 
     el.appendChild(this.hmi);
