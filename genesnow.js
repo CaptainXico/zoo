@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const cameraPosition = { x: 0, y: 0, z: 0 };
   const radius = 50; // Radius around the camera to spread the entities
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 10; i++) {
     const snow = document.createElement("a-entity");
 
     // Randomize positions within the defined radius around the camera's X and Z coordinates
