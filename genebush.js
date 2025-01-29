@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const minRadius = 5; // Minimum distance from the camera where trees cannot spawn
   const maxRadius = 25; // Maximum radius for tree generation
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     const tree = document.createElement("a-entity");
 
     // Generate random angle and distance within the allowed range
